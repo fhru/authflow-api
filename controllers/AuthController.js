@@ -19,10 +19,10 @@ export const Login = async (req, res) => {
     const role = userExist.role
 
     res.status(200).json({
-        uuid,
-        name,
-        email,
-        role
+        uuid: uuid,
+        name: name,
+        email: email,
+        role: role
     });
 }
 

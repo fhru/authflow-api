@@ -19,7 +19,7 @@ const store = new sessionStore({
 
 app.use(cors({
     credentials: true,
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:5173'
 }))
 app.use(session({
     secret: process.env.SESS_SECRET,

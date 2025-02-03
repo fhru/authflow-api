@@ -28,6 +28,11 @@ export const getUserById = async (req, res) => {
 
 export const createUser = async (req, res) => {
     const { name, email, password, confirmPassword, role } = req.body;
+
+    if (!name || !email || !password || !confirmPassword || !role) {
+        return res.status(400).json({ msg: 'Semua field harus diisi!' });
+    }
+
     if (password !== confirmPassword) return res.status(400).json({ msg: 'Password Dan Confirm Password Tidak Cocok!' });
     const hashedPassword = await argon2.hash(password);
 
