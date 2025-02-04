@@ -2,6 +2,11 @@ import { User } from "../models/index.js";
 import argon2 from 'argon2'
 
 export const Login = async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+        return res.status(400).json({ msg: 'Semua field harus diisi!' });
+    }
+
     const userExist = await User.findOne({
         where: {
             email: req.body.email
@@ -15,13 +20,13 @@ export const Login = async (req, res) => {
     req.session.userId = userExist.uuid
     const uuid = userExist.uuid
     const name = userExist.name
-    const email = userExist.email
+    const userEmail = userExist.email
     const role = userExist.role
 
     res.status(200).json({
         uuid: uuid,
         name: name,
-        email: email,
+        email: userEmail,
         role: role
     });
 }
